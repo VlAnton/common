@@ -1,28 +1,51 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <SideMenu />
+    <PageHeader />
+    <transition name="fadeOut">
+      <Loader v-if="loading" />
+    </transition>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SideMenu from "./components/SideMenu.vue";
+import PageHeader from "./components/PageHeader.vue";
+import Loader from "./components/Loader.vue";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SideMenu,
+    PageHeader,
+    Loader
+  },
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+html {
+  background: #f6f4fc;
+  box-sizing: border-box;
+  font-family: "PT Root UI";
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  -webkit-font-smoothing: antialiased;
+
+  font-size: 13px;
+  word-spacing: 1px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
 }
 </style>
